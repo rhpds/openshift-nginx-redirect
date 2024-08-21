@@ -1,7 +1,7 @@
 ---
 image: "image-registry.openshift-image-registry.svc:5000/openshift/nginx:latest"
 
-redirectTargetDomain:
+redirectBaseUrl:
 
 replicaCount: 1
 

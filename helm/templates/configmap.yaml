@@ -12,6 +12,6 @@ data:
     http {
       server {
         listen 8080;
-        rewrite ^/(.*)$ http://{{ .Values.redirectTargetDomain | required "redirectTargetDomain value is required" }}/$1 permanent;
+        rewrite ^/(.*)$ {{ .Values.redirectBaseUrl | required "redirectBaseUrl value is required" }}/$1 permanent;
       }
     }

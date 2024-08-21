@@ -2,4 +2,4 @@
 
 Deploy with helm.
 
-Set `redirectTargetDomain` in values.
+Set `redirectBaseUrl` in values.
