@@ -1,0 +1,6 @@
+apiVersion: v2
+name: openshift-nginx-redirect
+description: Simple chart to configure nginx server with redirect
+type: application
+version: 0.1.0
+appVersion: 0.1.0

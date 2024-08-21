@@ -1,0 +1,5 @@
+= Simple OpenShift nginx redirect service
+
+Deploy with helm.
+
+Set `redirectTargetDomain` in values.

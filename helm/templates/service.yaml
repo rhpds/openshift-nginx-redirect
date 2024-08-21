@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    description: Exposes and load balances the application pods
+  name: {{ include "openshift-nginx-redirect.name" . }}
+  labels:
+    {{- include "openshift-nginx-redirect.labels" . | nindent 4 }}
+spec:
+  ports:
+  - name: web
+    port: 8080
+    targetPort: 8080
+  selector:
+    {{- include "openshift-nginx-redirect.selectorLabels" . | nindent 4 }}

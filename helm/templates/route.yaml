@@ -1,0 +1,21 @@
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  {{- if .Values.route.certUtilsOperator.enable }}
+  annotations:
+    cert-utils-operator.redhat-cop.io/certs-from-secret: {{ include "openshift-nginx-redirect.name" . }}-tls
+  {{- end }}
+  labels:
+    {{- include "openshift-nginx-redirect.labels" . | nindent 4 }}
+  name: {{ include "openshift-nginx-redirect.name" . }}
+spec:
+  {{- with .Values.route.host }}
+  host: {{ . }}
+  {{- end }}
+  to:
+    kind: Service
+    name: {{ include "openshift-nginx-redirect.name" . }}
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge

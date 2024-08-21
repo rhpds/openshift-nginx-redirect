@@ -1,0 +1,21 @@
+{{- if .Values.route.certManager.enable }}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  labels:
+    {{- include "openshift-nginx-redirect.labels" . | nindent 4 }}
+  name: {{ include "openshift-nginx-redirect.name" . }}-tls
+spec:
+  dnsNames:
+  - {{ .Values.route.host | required "route host is required when cert-manager is enabled" }}
+  duration: {{ .Values.route.certManager.duration }}
+  issuerRef:
+    {{- toYaml .Values.route.certManager.issuerRef | nindent 4 }}
+  privateKey:
+    {{- toYaml .Values.route.certManager.privateKey | nindent 4 }}
+  renewBefore: {{ .Values.route.certManager.renewBefore }}
+  secretName: {{ include "openshift-nginx-redirect.name" . }}-tls
+  usages:
+  - server auth
+{{- end }}
